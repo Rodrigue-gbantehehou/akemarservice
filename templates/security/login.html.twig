@@ -1,0 +1,113 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+		<title>Akemar service</title>
+
+		<meta name="description" content="Akemar service created by pixelcave">
+		<meta name="author" content="pixelcave">
+		<meta
+		name="robots" content="index, follow">
+
+		<!-- Open Graph Meta -->
+		<meta property="og:title" content="Akemar service">
+		<meta property="og:site_name" content="OneUI">
+		<meta property="og:description" content="Akemar service created by pixelcave">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="">
+		<meta property="og:image" content="">
+
+		{% include "liens/lien_css.html.twig" %}
+	</head>
+
+	<body>
+		<!-- Page Container -->
+
+		<div
+			id="page-container">
+
+			<!-- Main Container -->
+			<main
+				id="main-container">
+				<!-- Page Content -->
+				<div class="hero-static d-flex align-items-center">
+					<div class="content">
+						<div class="row justify-content-center push">
+							<div
+								class="col-md-8 col-lg-6 col-xl-4">
+								<!-- Sign In Block -->
+								<div class="block block-rounded mb-0">
+									<div class="block-header block-header-default">
+										<h3 class="block-title">Connexion</h3>
+										<div class="block-options">
+											<a class="btn-block-option" href="{{path('app_register')}}" data-bs-toggle="tooltip" data-bs-placement="left" title="Nouvel Compte">
+												<i class="fa fa-user-plus"></i>
+											</a>
+										</div>
+									</div>
+									<div class="block-content">
+										<div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
+											{% if error %}
+												<div class="alert alert-danger">identifiant ou mot de passe incorrect</div>
+											{% endif %}
+											<h1 class="h2 mb-1">Akemar service</h1>
+											{% if app.user %}
+												<div class="mb-3">
+
+													{{ app.user.userIdentifier }},Vous etes deja connecté
+													<a href="{{ path('app_logout') }}">Se deconnecter</a>
+												</div>
+											{% else %}
+												<p class="fw-medium text-muted">
+													Bienvenue, veuillez vous identifier.
+												</p>
+											{% endif %}
+
+
+											<form class="js-validation-signin" method="POST">
+												<div class="py-3">
+													<div class="mb-4">
+														<input type="text" class="form-control form-control-alt form-control-lg" id="login-username" value="{{ last_username }}" name="uuid" placeholder="Username">
+													</div>
+													<div class="mb-4">
+														<input type="password" class="form-control form-control-alt form-control-lg" id="login-password" name="password" placeholder="Password">
+														<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+													</div>
+
+
+													<div class="row mb-4">
+														<div class="col-md-12 col-xl-12">
+															<button type="submit" class="btn w-100 btn-alt-primary">
+																<i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i>
+																Se connecter
+															</button>
+														</div>
+													</div>
+												</div>
+
+											</form>
+											<!-- END Sign In Form -->
+										</div>
+									</div>
+								</div>
+								<!-- END Sign In Block -->
+							</div>
+						</div>
+						<div class="fs-sm text-muted text-center">
+							<strong>OneUI 5.9</strong>
+							&copy;
+							<span data-toggle="year-copy"></span>
+						</div>
+					</div>
+				</div>
+				<!-- END Page Content -->
+			</main>
+			<!-- END Main Container -->
+		</div>
+		<!-- END Page Container -->
+
+		{% include "liens/lien_js.html.twig" %}
+	</body>
+</html>

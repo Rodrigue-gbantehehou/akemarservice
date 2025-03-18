@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Commande{% endblock %}
+
+{% block body %}
+    <h1>Edit Commande</h1>
+
+    {{ include('gestcommande/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_gestcommande_index') }}">back to list</a>
+
+    {{ include('gestcommande/_delete_form.html.twig') }}
+{% endblock %}

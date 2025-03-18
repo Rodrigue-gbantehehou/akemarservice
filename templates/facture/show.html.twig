@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %} {% block body %}
+
+<!-- Page Content -->
+<div class="content content-boxed">
+  <!-- Invoice -->
+  <div class="block block-rounded">
+    <div class="block-header block-header-default">
+      <h3 class="block-title">#{{ facture.reference }}</h3>
+      <div class="block-options">
+        <!-- Print Page functionality is initialized in Helpers.onePrint() -->
+        <button
+          type="button"
+          class="btn-block-option"
+          onclick="One.helpers('one-print');"
+        >
+          <i class="si si-printer me-1"></i>
+          Imprimer
+        </button>
+      </div>
+    </div>
+    <div class="block-content">
+      <div class="p-sm-4 p-xl-7">
+        <!-- Invoice Info -->
+        <div class="row mb-4">
+          <!-- Company Info -->
+          <div class="col-6 fs-sm">
+            <div class="row">
+              <div class="col-3">
+			  <img class="img-fluid" src="{{asset('assets/media/logo.png')}}" alt="">
+			  </div>
+              <div class="col-9">
+				<p class="h3">AKEMAR </br> SERVICE</p>
+			  </div>
+            </div>
+            
+            <address>
+              Imprimerie et Agence Graphiste<br />
+              Email:akemarservices@gmail.com<br />
+              www.akamerservice.com
+            </address>
+          </div>
+          <!-- END Company Info -->
+
+          <!-- Client Info -->
+          <div class="col-6 text-end fs-sm">
+            <p class="h3">client</p>
+            {{ facture.commande.client.nomclient }}
+            <address>
+              {{ facture.commande.client.telephoneclient }}<br />
+              {{ facture.commande.client.adresse }}<br />
+            </address>
+          </div>
+          <!-- END Client Info -->
+        </div>
+        <!-- END Invoice Info -->
+        <div>
+          <p class="fs-sm text-muted text-center">
+            Date:
+            {{ facture.datefacture ? facture.datefacture|date('d-m-Y') : '' }}
+          </p>
+          Objet :
+          {{ facture.commande }}
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive push">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" style="width: 60px"></th>
+                <th>designation</th>
+                <th class="text-center" style="width: 90px">QTE</th>
+                <th class="text-end" style="width: 120px">Prix U.</th>
+                <th class="text-end" style="width: 120px">Montant</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% set total = 0 %} {% for detailcommande in detailcommande %}
+              <tr>
+                <td class="text-center">{{ loop.index }}</td>
+                <td>
+                  <p class="fw-semibold mb-1">
+                    {{ detailcommande.description }}
+                  </p>
+                  <div class="text-muted">{{ detailcommande.consommable }}</div>
+                </td>
+                <td class="text-center">
+                  {{ detailcommande.qtecommande }}
+                </td>
+                <td class="text-end">{{ detailcommande.prix }} F </td>
+                <td class="text-end">
+                  {{ detailcommande.qtecommande * detailcommande.prix }} F
+                </td>
+              </tr>
+              {% set total = total + detailcommande.qtecommande *
+              detailcommande.prix %} {% endfor %}
+
+              <tr>
+                <td colspan="4" class="fw-semibold text-end">
+                  Montant Total (Hors Taxe)
+                </td>
+                <td class="text-end">
+                  {{ total }} F
+                </td>
+              </tr>
+              {% if facture.TVA == 0 %}
+              <tr>
+                <td colspan="4" class="fw-semibold text-end">Montant payé</td>
+                <td class="text-end">{{ facture.Montant }} F</td>
+              </tr>
+
+              <tr>
+                <td
+                  colspan="4"
+                  class="fw-bold text-uppercase text-end bg-body-light"
+                >
+                  Reste à payer
+                </td>
+                <td class="text-end">{{ facture.resteapayer }} F</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="4" class="fw-semibold text-end">TVA</td>
+                <td class="text-end">{{ facture.TVA }}%</td>
+              </tr>
+
+              <tr>
+                <td colspan="4" class="fw-semibold text-end">Montant TTC</td>
+                <td class="text-end">
+                  {{ (facture.TVA / 100) * facture.Montant + total }}
+                  F
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4"  class="fw-bold text-uppercase text-end bg-body-light" >
+                  Montant payé
+                </td>
+                <td class="fw-bold text-end bg-body-light">
+                  {{ facture.Montant }}  F
+                </td>
+              </tr>
+			  <tr>
+                <td colspan="4"  class=" text-uppercase text-end" >
+                  Reste à Payer
+                </td>
+                <td class=" text-end ">
+                  {{ facture.resteapayer }}  F
+                </td>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+        <!-- END Table -->
+
+        <!-- Footer -->
+        <p class="fs-sm text-muted text-center">
+          Email:akemarservices@gmail.com www.akamerservice.com
+        </p>
+        <!-- END Footer -->
+      </div>
+    </div>
+  </div>
+  <!-- END Invoice -->
+</div>
+<!-- END Page Content -->
+{% endblock %}

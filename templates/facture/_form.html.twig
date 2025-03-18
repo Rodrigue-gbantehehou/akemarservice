@@ -1,0 +1,38 @@
+<div class="block block-rounded block-transparent mb-0">
+	<div class="block-header block-header-default">
+		<h3 class="block-title">Nouvel consommable</h3>
+		<div class="block-options">
+			<button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+				<i class="fa fa-fw fa-times"></i>
+			</button>
+		</div>
+	</div>
+	{{form_start(form)}}
+	<!-- Payment -->
+
+		<div class="block-content block-content-full">
+				<div class="mb-4">
+					<label class="form-label" for="checkout-cc-number">Montant payer</label>
+					{{form_row(form.montatalfacture)}}
+				</div>
+				<div class="mb-4">
+					<label class="form-label" for="checkout-cc-name">Moyen de payement</label>
+					{{form_row(form.moyenpaiement)}}
+				</div>
+
+				<div class="form-check">
+					{{form_row(form.TVA)}}
+					<label class="form-check-label" for="checkout-cc-name">TVA Applicable?</label>
+
+				</div>
+		</div>
+	
+
+	<div class="block-content block-content-full text-end bg-body">
+		<button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Fermer</button>
+		<button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+	</div>
+	{{form_end(form)}}
+
+
+</div>

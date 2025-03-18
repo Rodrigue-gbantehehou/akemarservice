@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block body %}
+
+	<!-- Dynamic Table with Export Buttons -->
+	<div class="content">
+		<div class="block block-rounded">
+
+			<div
+				class="block-content block-content-full overflow-x-auto">
+				<!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+							<th>Uuid</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Mail</th>
+							<th>Poste</th>
+							<th>Telephone</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr>
+								<td>{{ user.uuid }}</td>
+								<td>{{ user.nom }}</td>
+								<td>{{ user.prenom }}</td>
+								<td>{{ user.mail }}</td>
+								<td>{{ user.poste }}</td>
+								<td>{{ user.telephone }}</td>
+								
+								<td class="text-center">
+									<div class="btn-group">
+										<a class="btn btn-sm btn-alt-secondary" href="{{ path('app_user_show', {'id': user.id}) }}">
+											<i class="fa fa-eye"></i>
+										</a>
+										<a class="btn btn-sm btn-alt-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">
+											<i class="fa fa-pencil"></i>
+										</a>
+										</div>
+								</td>
+							</tr>
+						</td>
+					</tbody>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="10">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+</div>
+<!-- END Users --></div></div><!-- END Results --></div><a href="{{ path('app_user_new') }}">Create new</a>{% endblock %}

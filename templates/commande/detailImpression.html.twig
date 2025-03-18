@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+	<!-- Page Content -->
+	<div class="content">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+
+				{{form_start(Commandeimpressionform)}}
+				<!-- Payment -->
+				<div class="block block-rounded">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">Detail de la commande</h3>
+					</div>
+					<div class="block-content block-content-full">
+						<div class="mx-0 mx-md-6 mx-xl-8">
+							<div class="mb-4">
+								<label class="form-label" for="checkout-cc-number">Designation</label>
+								{{form_row(Commandeimpressionform.nomimpression)}}
+							</div>
+							<div class="mb-4">
+								<label class="form-label" for="checkout-cc-name">Type de support</label>
+								{{form_row(Commandeimpressionform.consommable)}}
+							</div>
+							<div class="row ">
+								<label class="form-label" for="checkout-cc-expiry">Dimensions</label>
+								<div class="col-6 ">
+									<label class="form-label" for="checkout-cc-expiry">largeur(en metre)</label>
+									{{form_row(Commandeimpressionform.xdimension)}}
+								</div>
+								<div class="col-6">
+									<label class="form-label" for="checkout-cc-cvc">hauteur(en metre)</label>
+									{{form_row(Commandeimpressionform.ydimension)}}
+								</div>
+							</div>
+							<div class="mb-4">
+								<label class="form-label" for="checkout-cc-name">Quantite</label>
+								{{form_row(Commandeimpressionform.nombrepapier)}}
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+				<!-- END Payment -->
+				<!-- Warning -->
+
+
+				<!-- END Warning -->
+				<!-- Submit Form -->
+					<div class="row "> <div class="col-6 ">
+						{{form_row(Commandeimpressionform.Enregister)}}
+					</div>
+					<div class="col-6">
+						{{form_row(Commandeimpressionform.Payement)}}
+					</div>
+				</div>
+			</div>
+			{{form_end(Commandeimpressionform)}}
+
+		</div>
+	</div>
+</div>
+<!-- Search -->{% endblock %}

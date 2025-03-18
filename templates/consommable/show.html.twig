@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consommable{% endblock %}
+
+{% block body %}
+    <h1>Consommable</h1>
+<turbo-frame id="recipe_{{consommable.id}}">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ consommable.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ consommable.nom }}</td>
+            </tr>
+            <tr>
+                <th>Typeduconsommable</th>
+                <td>{{ consommable.typeduconsommable }}</td>
+            </tr>
+            <tr>
+                <th>Typepapier</th>
+                <td>{{ consommable.typepapier }}</td>
+            </tr>
+            <tr>
+                <th>Formatsupport</th>
+                <td>{{ consommable.formatsupport }}</td>
+            </tr>
+            <tr>
+                <th>Prixunit</th>
+                <td>{{ consommable.prixunit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_consommable_index') }}">back to list</a>
+
+    <a href="{{ path('app_consommable_edit', {'id': consommable.id}) }}">edit</a>
+
+    {{ include('consommable/_delete_form.html.twig') }}
+<turbo-frame >   
+{% endblock %}

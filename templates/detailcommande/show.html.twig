@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %} {% block title %}Detailcommande {% endblock %} {%
+block body %}
+<!-- Page Content -->
+<div class="content">
+  <!-- Quick Overview -->
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <a class="block block-rounded block-link-shadow text-center" href="javascript:void(0)" >
+        <div class="block-content block-content-full">
+          <div class="item item-circle bg-success-light mx-auto">
+            <i class="fa fa-check text-success"></i>
+          </div>
+        </div>
+        <div class="block-content py-2 bg-body-light">
+          <p class="fw-medium fs-sm text-success mb-0">{{ commande.description }}</p>
+        </div>
+      </a>
+    </div>
+    
+  </div>
+  <!-- END Quick Overview -->
+
+  <!-- Products -->
+  <div class="block block-rounded">
+    <div class="block-header block-header-default">
+      <h3 class="block-title">Details commande</h3>
+    </div>
+    <div class="block-content">
+      <div class="table-responsive">
+        <table class="table table-borderless table-striped table-vcenter fs-sm">
+          <thead>
+            <tr>
+              <th class="text-center" style="width: 100px">ID</th>
+              <th>Description</th>
+              <th class="text-center">Qte</th>
+              <th class="text-end" style="width: 10%">Prix U.</th>
+              <th class="text-end" style="width: 10%">Montant</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% set total = 0 %} {% for detailcommandes in detailcommandes %}
+
+            <tr>
+              <td class="text-center">
+                <a href="#">
+                  <strong>{{ detailcommandes.id }}</strong>
+                </a>
+              </td>
+              <td>
+                {{ detailcommandes.description }}
+              </td>
+              <td class="text-center">
+                <strong>{{ detailcommandes.qtecommande }}</strong>
+              </td>
+              <td class="text-end">{{ detailcommandes.prix }} F</td>
+              <td class="text-end">
+                {{ detailcommandes.qtecommande * detailcommandes.prix }} F
+              </td>
+            </tr>
+            {% set total = total + detailcommandes.qtecommande * detailcommandes.prix %}
+             {% endfor %}
+
+            <tr>
+              <td colspan="4" class="text-end">
+                <strong>Montant Total:</strong>
+              </td>
+              <td class="text-end">{{ total }} F</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-end">
+                <strong>Montant Total Payé :</strong>
+              </td>
+              <td class="text-end">{{ totalpayer }} F</td>
+            </tr>
+            <tr class="table-success">
+              <td colspan="2" class="text-uppercase">
+				{% if (total - totalpayer) == 0 %}
+					
+					{% else %}
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-block-popin">
+						Ajouter
+					</button>
+				{% endif %}
+              </td>
+              <td colspan="2" class="text-end ">
+                <strong>Total Due:</strong>
+              </td>
+              <td class="text-end">
+                <strong>{{total - totalpayer }} F</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- END Products -->
+
+  <!-- Customer -->
+  <div class="row">
+    <div class="col-sm-6">
+      <!-- Billing Address -->
+      <div class="block block-rounded">
+        <div class="block-header block-header-default">
+          <h3 class="block-title">Client</h3>
+        </div>
+        <div class="block-content">
+          <div class="fs-4 mb-1">Nom client : {{client.nomclient}}</div>
+          <address class="fs-4 mb-1">
+            Telephone Client : {{client.telephoneclient}}<br />
+           Adresse Client : {{client.adresse}}<br /><br />
+            
+          </address>
+        </div>
+      </div>
+      <!-- END Billing Address -->
+    </div>
+    <div class="col-sm-6">
+      <!-- Shipping Address -->
+      <div class="block block-rounded">
+        <div class="block-header block-header-default">
+          <h3 class="block-title">Les factures</h3>
+        </div>
+        <div class="block-content">
+          <table
+            class="table table-borderless table-striped"
+          >
+            <tbody>
+              {% for facture in facture %}
+
+              <tr>
+                <td class="fs-base" >
+                  {{facture.reference}}
+                </td>
+				<td class="text-success">{{facture.statut}}</td>
+                <td>
+					{{facture.montant}} F
+                </td>
+				<td class="text-center">
+					<div class="btn-group">
+					<a class="btn btn-sm btn-alt-secondary" href="{{ path('app_facture_show', {'id': facture.id,'idcommande': facture.commande.id}) }}">
+						<i class="fa fa-eye"></i>
+					</a>
+						
+					</div>
+				</td>
+                
+              </tr>
+              {% else %}
+              <tr class="text-center">
+                <td>Auccune facture enregistée pour cette commande</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- END Shipping Address -->
+    </div>
+  </div>
+  <!-- END Customer -->
+</div>
+<!-- END Page Content -->
+<div
+  class="modal fade"
+  id="modal-block-popin"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal-block-popin"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-popin" role="document">
+    <div class="modal-content">{% include "facture/_form.html.twig" %}</div>
+  </div>
+</div>
+
+{% endblock %}

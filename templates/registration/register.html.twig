@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+		<title>Akemar service</title>
+
+		<meta name="description" content="Akemar service created by pixelcave">
+		<meta name="author" content="pixelcave">
+		<meta
+		name="robots" content="index, follow">
+
+		<!-- Open Graph Meta -->
+		<meta property="og:title" content="Akemar service">
+		<meta property="og:site_name" content="OneUI">
+		<meta property="og:description" content="Akemar service created by pixelcave">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="">
+		<meta property="og:image" content="">
+
+		{% include "liens/lien_css.html.twig" %}
+	</head>
+
+	<body>
+
+		<div id="page-container">
+			<main
+				id="main-container">
+				<!-- Page Content -->
+				<div class="hero-static d-flex align-items-center">
+					<div class="content">
+						<div class="row justify-content-center push">
+							<div
+								class="col-md-8 col-lg-6 col-xl-4">
+								<!-- Sign Up Block -->
+								<div class="block block-rounded mb-0">
+									<div class="block-header block-header-default">
+										<h3 class="block-title">Creation du compte</h3>
+										<div class="block-options">
+											<a class="btn-block-option" href="{{path('app_login')}}" data-bs-toggle="tooltip" data-bs-placement="left" title="se connecter">
+												<i class="fa fa-sign-in-alt"></i>
+											</a>
+										</div>
+									</div>
+									<div class="block-content">
+										<div class="p-sm-3 px-lg-4 px-xxl-5 ">
+											<h1 class="h2 mb-1">Akemar service</h1>
+											<p class="fw-medium text-muted">
+												Entrer les details pour creer votre compte.
+											</p>
+
+											{{ form_errors(registrationForm) }}
+											{{ form_start(registrationForm) }}
+												<div class="py-3"> <div class="mb-4">
+													<label class="form-label" for="val-username">Identifiant
+														<span class="text-danger">*</span>
+													</label>
+													{{ form_row(registrationForm.uuid) }}
+												</div>
+												<div class="mb-4">
+													<label class="form-label" for="val-username">Nom
+														<span class="text-danger">*</span>
+													</label>
+													{{ form_row(registrationForm.nom) }}
+												</div>
+												<div class="mb-4">
+													<label class="form-label" for="val-email">Prenom
+														<span class="text-danger">*</span>
+													</label>
+													{{ form_row(registrationForm.prenom) }}
+												</div>
+												<div class="mb-4">
+													<label class="form-label" for="val-password">Password
+														<span class="text-danger">*</span>
+													</label>
+													{{ form_row(registrationForm.plainPassword) }}
+												</div>
+												<div class="mb-4">
+													<label class="form-label" for="val-confirm-password">Email
+														<span class="text-danger">*</span>
+													</label>
+													{{ form_row(registrationForm.mail) }}
+												</div>
+												<div class="mb-4">
+													<label class="form-label" for="val-poste">Poste
+														<span class="text-danger">*</span>
+													</label>
+													{{ form_row(registrationForm.poste) }}
+												</div>
+												<div class="mb-4">
+													<label class="form-label" for="val-telephone">
+														Telephone
+														<span class="text-danger">*</span>
+													</label>
+													{{ form_row(registrationForm.telephone) }}
+												</div>
+											</div>
+											<div class="row mb-4">
+												<div class="col-md-12 col-xl-12">
+													<button type="submit" class="btn w-100 btn-alt-success">
+														<i class="fa fa-fw fa-plus me-1 opacity-50"></i>
+														Enregister
+													</button>
+												</div>
+											</div>
+											{{ form_end(registrationForm) }}
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="fs-sm text-muted text-center">
+							<strong>AKEMAR SERVICE</strong>
+							&copy;
+							<span data-toggle="year-copy"></span>
+						</div>
+					</div>
+
+					
+				</div>
+				<!-- END Page Content -->
+			</main>
+			<!-- END Main Container -->
+		</div>
+		{% include "liens/lien_js.html.twig" %}
+	</body>
+</html>
+
+

@@ -1,0 +1,37 @@
+<div class="modal-content">
+	<div class="block block-rounded block-transparent mb-0">
+		<div class="block-header block-header-default">
+			<h3 class="block-title">Nouvel consommable</h3>
+			<div class="block-options">
+				<button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+					<i class="fa fa-fw fa-times"></i>
+				</button>
+			</div>
+		</div>
+		{{ form_start(form) }}
+		<div class="block-content block-content-full">
+			<div class="form-floating mb-4">
+				{{ form_row(form.uuid) }}
+			</div>
+			<div class="form-floating mb-4">
+				{{ form_row(form.nom) }}
+			</div>
+			<div class="form-floating mb-4">
+				{{ form_row(form.prenom) }}
+			</div>
+			<div class="form-floating mb-4">
+				{{ form_row(form.mail) }}
+			</div>
+			<div class="form-floating mb-4">
+				{{ form_row(form.poste) }}
+			</div>
+			<div class="form-floating mb-4">
+				{{ form_row(form.telephone) }}
+			</div>
+			<div class="form-floating mb-4">
+				<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+</div>

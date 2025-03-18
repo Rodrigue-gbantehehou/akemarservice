@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detailcommande index
+{% endblock %}
+
+{% block body %}
+
+	
+	<h1>Detailcommande index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Prix</th>
+				<th>Dimension</th>
+				<th>CreateAlt</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for detailcommande in detailcommandes %}
+				<tr>
+					<td>{{ detailcommande.id }}</td>
+					<td>{{ detailcommande.description }}</td>
+					<td>{{ detailcommande.type }}</td>
+					<td>{{ detailcommande.prix }}</td>
+					<td>{{ detailcommande.dimension }}</td>
+					<td>{{ detailcommande.createAlt ? detailcommande.createAlt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_detailcommande_show', {'id': detailcommande.id}) }}">show</a>
+						<a href="{{ path('app_detailcommande_edit', {'id': detailcommande.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_detailcommande_new') }}">Create new</a>
+{% endblock %}

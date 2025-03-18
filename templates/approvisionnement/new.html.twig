@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Approvisionnement{% endblock %}
+
+{% block body %}
+   <div class="content">
+		<div class="block block-rounded">
+			<div class="block-content block-content-full overflow-x-auto">
+				
+ {{ include('approvisionnement/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+
+   
+
+    <a href="{{ path('app_approvisionnement_index') }}">back to list</a>
+{% endblock %}

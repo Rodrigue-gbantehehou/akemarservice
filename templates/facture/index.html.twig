@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture index
+{% endblock %}
+
+{% block body %}
+	<div
+		class="content">
+		<!-- Dynamic Table Full Pagination -->
+		<div class="block block-rounded">
+			<div class="block-header block-header-default">
+				<h3 class="block-title">Liste des factures
+				</h3>
+			</div>
+			<div
+				class="block-content block-content-full overflow-x-auto">
+				<!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+                        <th style="width: 15%;">Reference</th>
+							<th class="text-center" style="width: 15%;">Date</th>
+							
+							<th style="width: 15%;">Montant</th>
+							<th class="d-none d-sm-table-cell" style="width: 15%;">Moyen Paie.</th>
+							<th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for facture in factures %}
+
+							<tr>
+								<td class="fw-semibold fs-sm">{{ facture.Reference }}</td>
+								<td class=" text-center">
+									<span class="text-muted fs-sm">{{ facture.datefacture ? facture.datefacture|date('Y-m-d') : '' }}</span>
+								</td>
+
+								
+								<td class=" text-center  fs-sm">
+									{{ facture.Montant }}<span class="mutted">
+										F CFA</span>
+								</td>
+								<td class="text-center d-sm-table-cell">
+									<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">{{ facture.moyenpaiemant }}</span>
+								</td>
+
+								<td class="d-none d-sm-table-cell fs-sm">
+									<a href="{{ path('app_facture_show', {'id': facture.id,'idcommande': facture.commande.id}) }}">show</a>
+									<a href="{{ path('app_facture_edit', {'id': facture.id}) }}">edit</a>
+								</td>
+							</tr>
+
+						{% else %}
+							<tr>
+								<td colspan="6">no records found</td>
+							</tr>
+						{% endfor %}
+
+
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	
+
+
+{% endblock %}

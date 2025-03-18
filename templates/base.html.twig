@@ -1,17 +1,83 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		<title>Akemar service</title>
+
+		<meta name="description" content="Akemar service">
+		<meta name="author" content="pixelcave">
+		<meta
+		name="robots" content="index, follow">
+
+		<!-- Open Graph Meta -->
+		<meta property="og:title" content="Akemar service">
+		<meta property="og:site_name" content="OneUI">
+		<meta property="og:description" content="Akemar service">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="">
+		<meta
+		property="og:image" content="">
+
+		<!-- Icons -->
+		{% include 'liens/lien_css.html.twig' %}
+
+
+	<!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+		<!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
+		<!-- END Stylesheets -->
+	</head>
+
+	<body>
+		<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+
+
+			{% include 'liens/navbar.html.twig'%}
+			<!-- END Header -->
+
+			<!-- Main Container -->
+				<main
+				id="main-container"> <!-- Navigation -->
+				{% include 'liens/sidebar.html.twig' %}
+
+				{% for message in app.flashes('warring') %}
+					<div class="alert">
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<p class="mb-0">
+								{{message}}
+							</p>
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					</div>
+				{% endfor %}
+				{% for message in app.flashes('success') %}
+					<div class="alert">
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<p class="mb-0">
+								{{message}}
+							</p>
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					</div>
+				{% endfor %}
+
+				{% block body %}{% endblock %}
+
+
+			</main>
+			<!-- END Main Container -->
+
+			<!-- Footer -->
+			{% include "liens/footer.html.twig" %}
+			<!-- END Footer -->
+		</div>
+		<!-- END Page Container -->
+
+
+	</body>
+
+	<!-- End Style Switcher JS -->
+
+	{% include 'liens/lien_js.html.twig' %}
 </html>

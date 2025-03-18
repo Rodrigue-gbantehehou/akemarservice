@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index
+{% endblock %}
+
+{% block body %}
+
+	<div
+		class="content">
+		<!-- Dynamic Table Full Pagination -->
+		<div class="block block-rounded">
+			<div class="block-header block-header-default">
+				<h3 class="block-title">Listes des commandes
+				</h3>
+			</div>
+			<div
+				class="block-content block-content-full overflow-x-auto">
+				<!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+							<th class="text-center">Date</th>
+							<th>Description</th>
+							<th>Montant</th>
+							<th class="text-center">Statut</th>
+							<th class="text-center">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for commande in commandes %}
+
+							<tr>
+								<td class=" text-center">
+									<span class="text-muted fs-sm">{{ commande.created ? commande.created|date('Y-m-d') : '' }}</span>
+								</td>
+
+								<td>{{ commande.description }}</td>
+								<td class="   fs-sm">
+									{{ commande.prixcommande }}<span class="mutted">
+										F CFA</span>
+								</td>
+								<td class="text-center">
+									<span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">{{ commande.statutcommande }}</span>
+								</td>
+
+								<td class="text-center">
+									<a class="btn btn-sm btn-alt-secondary" href="{{ path('app_detailcommande_show', {'idcommande': commande.id}) }}">
+										<i class="fa fa-fw fa-eye"></i>
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">no records found</td>
+							</tr>
+						{% endfor %}
+
+
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Commande
+{% endblock %}
+
+{% block body %}
+	<div class="content">
+		<!-- Toggle Side Content -->
+		<!-- Class Toggle, functionality initialized in Helpers.oneToggleClass() -->
+			<div class="d-xl-none push"> <div class="row g-sm">
+				<div class="col-6">
+					<button type="button" class="btn btn-alt-secondary w-100" data-toggle="class-toggle" data-target=".js-ecom-div-nav" data-class="d-none">
+						<i class="fa fa-fw fa-bars text-muted me-1"></i>
+						Navigation
+					</button>
+				</div>
+				<div class="col-6">
+					<button type="button" class="btn btn-alt-secondary w-100" data-toggle="class-toggle" data-target=".js-ecom-div-cart" data-class="d-none">
+						<i class="fa fa-fw fa-shopping-cart text-muted me-1"></i>
+						Cart (3)
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- END Toggle Side Content -->
+
+		<div class="row">
+			<div
+				class="col-xl-4 order-xl-1">
+				<!-- Categories -->
+				<div class="block block-rounded js-ecom-div-nav d-none d-xl-block">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">
+							<i class="fa fa-fw fa-boxes text-muted me-1"></i>
+							Description
+						</h3>
+					</div>
+					<div class="block-content">
+					
+					</div>
+					
+				</div>
+				<!-- END Categories -->
+
+
+			</div>
+			<div
+				class="col-xl-8 order-xl-0">
+				<!-- Product -->
+				<div class="block block-rounded js-ecom-div-nav d-none d-xl-block">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">
+							<i class="fa fa-fw fa-boxes text-muted me-1"></i>
+							Detail de la commande
+						</h3>
+					</div>
+					<div class="block-content">
+						<table class="table">
+							<tbody>
+								
+								<tr>
+									<th>Type de la commande</th>
+									<td>{{ commande.typecommande }}</td>
+								</tr>
+								<tr>
+									<th>Statut de la commande</th>
+									<td>{{ commande.statutcommande }}</td>
+								</tr>
+								<tr>
+									<th>Prix de la commande</th>
+									<td>{{ commande.prixcommande }}</td>
+								</tr>
+								<tr>
+									<th>Creer
+									</th>
+									<td>{{ commande.created ? commande.created| date('Y-m-d H:i:s') : ''  }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+				<!-- Submit Form -->
+				<div class="text-end push">
+				<a href="{{ path('app_gestcommande_index') }}">
+					<button type="submit" class="btn btn-sm btn-primary">
+						<i class="fa fa-arrow-left me-1"></i>
+						Retour a la liste
+					</button>
+					</a>
+				</div>
+				<!-- END Submit Form -->
+
+	
+				<!-- END Product -->
+			</div>
+		</div>
+	</div>
+	
+
+
+
+{% endblock %}

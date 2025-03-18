@@ -1,0 +1,135 @@
+ 
+
+	<nav id="sidebar" aria-label="Main Navigation"> <!-- Side Header -->
+	<div class="content-header">
+		<!-- Logo -->
+		<a class="fw-semibold text-dual" href="index.html">
+			<span class="smini-visible">
+				<i class="fa fa-circle-notch text-primary"></i>
+			</span>
+			<span class="smini-hide fs-5 tracking-wider">Akemar S</span>
+		</a>
+		<!-- END Logo --> 
+	</div>
+	<!-- END Side Header -->
+
+	<!-- Sidebar Scrolling -->
+	<div
+		class="js-sidebar-scroll">
+		<!-- Side Navigation -->
+		<div class="content-side">
+			<ul class="nav-main">
+				<li class="nav-main-item">
+					<a class="nav-main-link active" href="{{path('app_dashbaord')}}">
+						<i class="nav-main-link-icon si si-speedometer"></i>
+						<span class="nav-main-link-name">Tableau de bord</span>
+					</a>
+				</li>
+				<li class="nav-main-item">
+					<a class="nav-main-link " href="{{path('app_commande')}}">
+						<i class="nav-main-link-icon si si-shoping"></i>
+						<span class="nav-main-link-name">Passer une commande</span>
+					</a>
+				</li>
+				{% if is_granted('ROLE_USER') %}
+					
+				<li class="nav-main-heading">Commande</li>
+				<li class="nav-main-item">
+					<a class="nav-main-link nav-main-link-submenu"  href="{{path('app_gestcommande_index')}}">
+						<i class="nav-main-link-icon si si-plus"></i>
+						<span class="nav-main-link-name">Les Commandes</span>
+					</a>
+				</li>
+				<li class="nav-main-heading">Client</li>
+				<li class="nav-main-item">
+						<a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+						<i class="nav-main-link-icon si si-user"></i>
+						<span class="nav-main-link-name">Client</span>
+					</a>
+					<ul class="nav-main-submenu">
+						<li class="nav-main-item">
+							<a class="nav-main-link" href="{{path('app_client_new')}}">
+								<span class="nav-main-link-name">Ajouter nouveau</span>
+							</a>
+						</li>
+						<li class="nav-main-item">
+							<a class="nav-main-link" href="{{path('app_client_index')}}">
+								<span class="nav-main-link-name">Listes des clients</span>
+							</a>
+						</li>
+
+					</ul>
+				</li>
+				<li class="nav-main-heading">Consommable</li>
+				<li class="nav-main-item">
+					<a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+						<i class="nav-main-link-icon si si-energy"></i>
+						<span class="nav-main-link-name">Consommable</span>
+					</a>
+					<ul class="nav-main-submenu">
+						<li class="nav-main-item">
+							<a class="nav-main-link" href="{{path('app_consommable_new')}}">
+								<span class="nav-main-link-name">Ajouter Conso.</span>
+							</a>
+						</li>
+						<li class="nav-main-item">
+							<a class="nav-main-link" href="{{path('app_consommable_index')}}">
+								<span class="nav-main-link-name">Liste des Conso.</span>
+							</a>
+						</li>
+
+					</ul>
+				</li>
+
+				<li class="nav-main-heading">Approvisionnement</li>
+				<li class="nav-main-item">
+					<a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+						<i class="nav-main-link-icon si si-energy"></i>
+						<span class="nav-main-link-name">Approvisionnement</span>
+					</a>
+					<ul class="nav-main-submenu">
+						<li class="nav-main-item">
+							<a class="nav-main-link" href="{{path('app_approvisionnement_new')}}">
+								<span class="nav-main-link-name">Faire un Approv.</span>
+							</a>
+						</li>
+						<li class="nav-main-item">
+							<a class="nav-main-link" href="{{path('app_approvisionnement_index')}}">
+								<span class="nav-main-link-name">Listes des Approv.</span>
+							</a>
+						</li>
+
+					</ul>
+				</li>
+				<li class="nav-main-heading">Facture</li>
+				<li class="nav-main-item">
+					<a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+						<i class="nav-main-link-icon si si-layers"></i>
+						<span class="nav-main-link-name">Les facturiers</span>
+					</a>
+					<ul class="nav-main-submenu">
+						<li class="nav-main-item">
+							<a class="nav-main-link" href="{{path('app_facture_index')}}">
+								<span class="nav-main-link-name">Listes des factures</span>
+							</a>
+						</li>
+
+
+					</ul>
+				</li>
+				<li class="nav-main-heading">Les Utilisateurs</li>
+				<li class="nav-main-item">
+						<a class="nav-main-link nav-main-link-submenu"  href="{{path('app_user_index')}}">
+						<i class="nav-main-link-icon si si-user"></i>
+						<span class="nav-main-link-name">Utilisateurs</span>
+					</a>
+					
+				</li>
+				{% endif %}
+
+			</ul>
+		</div>
+		<!-- END Side Navigation -->
+	</div>
+	<!-- END Sidebar Scrolling -->
+</nav>

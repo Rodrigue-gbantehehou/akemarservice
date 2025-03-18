@@ -1,0 +1,45 @@
+<div class="block block-rounded block-transparent mb-0">
+	<div class="block-header block-header-default">
+		<h3 class="block-title">Nouvel consommable</h3>
+		<div class="block-options">
+			<button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+				<i class="fa fa-fw fa-times"></i>
+			</button>
+		</div>
+	</div>
+	{{ form_start(form) }}
+
+	<div class="block-content fs-sm">
+		<div class="mb-4">
+			<label class="form-label" for="checkout-cc-number">Nom du consommable</label>
+			{{ form_row(form.nom) }}
+		</div>
+
+		<div class="mb-4">
+			<label class="form-label" for="checkout-cc-number">Type consommable</label>
+			{{ form_row(form.typeduconsommable) }}
+		</div>
+		<div class="mb-4">
+			<label class="form-label" for="checkout-cc-number">Caracteristique</label>
+			{{ form_row(form.typepapier) }}
+		</div>
+		<div class="mb-4">
+			<label class="form-label" for="checkout-cc-number">Format du support</label>
+			{{ form_row(form.formatsupport) }}
+		</div>
+		<div class="mb-4">
+			<label class="form-label" for="checkout-cc-number">Prix Unitaire</label>
+			{{ form_row(form.prixunit) }}
+		</div>
+		<div class="mb-4">
+			<label class="form-label" for="checkout-cc-number">Qte Dispo</label>
+			{{ form_row(form.qtedispo) }}
+		</div>
+	</div>
+	<div class="block-content block-content-full text-end bg-body">
+		<button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Fermer</button>
+		<button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+	</div>
+	{{ form_end(form) }}
+
+</div>

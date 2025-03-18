@@ -1,0 +1,40 @@
+
+
+
+        <div class="modal-content">
+            {{ form_start(form) }}
+            <div class="block block-rounded block-transparent mb-0">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">Client</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content fs-sm">
+                   
+                    <div class="form-floating mb-4">
+                        {{ form_row(form.nomClient) }}
+                    </div>
+                    <div class="form-floating mb-4">
+                        {{ form_row(form.telephoneClient) }}
+                    </div>
+                    <div class="form-floating mb-4">
+                        {{ form_row(form.statut) }}
+                    </div>
+                    <div class="form-floating mb-4">
+                        {{ form_row(form.adresse) }}
+                    </div>
+
+                    
+                </div>
+                <div class="block-content block-content-full text-end bg-body">
+                    <button type="button" class="btn btn-sm btn-alt-secondary me-1"
+                        data-bs-dismiss="modal">Fermer</button>
+                    <button class="btn btn-sm btn-primary">{{ button_label|default('Envoyer') }}</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+   

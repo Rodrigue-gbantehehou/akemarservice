@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<!-- Hero -->
+	<div class="bg-body-light">
+		<div class="content content-full">
+			<div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+				<div class="flex-grow-1">
+					<h1 class="h3 fw-bold mb-1">
+						Search
+					</h1>
+					<h2 class="fs-base lh-base fw-medium text-muted mb-0">
+						Vital page found in most web applications.
+					</h2>
+				</div>
+				<nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+					<ol class="breadcrumb breadcrumb-alt">
+						<li class="breadcrumb-item">
+							<a class="link-fx" href="javascript:void(0)">Generic</a>
+						</li>
+						<li class="breadcrumb-item" aria-current="page">
+							Search
+						</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- END Hero -->
+
+
+	<!-- Page Content -->
+	<div class="content">
+		<div class="row justify-content-center">
+			<div
+				class="col-md-8">
+				<!-- Search -->
+				{{form_start(seachform)}}
+				<!-- Payment -->
+				<div class="block block-rounded">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">1. Commande</h3>
+					</div>
+					<div class="block-content block-content-full">
+						<div class="mx-0 mx-md-6 mx-xl-8">
+							<div class="mb-4">
+								<label class="form-label" for="checkout-cc-number">Numero du client</label>
+								{{form_row(seachform.Numclient)}}
+							</div>
+							<div class="mb-4">
+								<label class="form-label" for="checkout-cc-name">Description de la commande</label>
+								{{form_row(seachform.description)}}
+							</div>
+							<div class="mb-4">
+								<label class="form-label" for="checkout-cc-name">Type de la commande</label>
+								{{form_row(seachform.Typecommande)}}
+							</div>
+							<div class="mb-4">
+								<label class="form-label" for="checkout-cc-number">Prix de la commande</label>
+								{{form_row(seachform.Prix)}}
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- END Payment -->
+
+				<!-- Submit Form -->
+				<div class="text-end push">
+					<button type="submit" class="btn btn-sm btn-primary">
+						<i class="fa fa-arrow-right me-1"></i>
+						Suivant
+					</button>
+				</div>
+				<!-- END Submit Form -->
+				{{form_end(seachform)}}
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

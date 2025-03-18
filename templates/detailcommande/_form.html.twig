@@ -1,0 +1,56 @@
+<div class="block-content block-content-full">
+  {{ form_start(form) }}
+
+  <div class="mb-4">
+    <label class="form-label" for="checkout-cc-number"
+      >Description de la commande</label
+    >
+    {{ form_row(form.description) }}
+  </div>
+  <div class="mb-4">
+    <label class="form-label" for="checkout-cc-name">Type de la commande</label>
+    {{ form_row(form.type) }}
+  </div>
+
+  <div class="mb-4">
+    <label class="form-label" for="checkout-cc-number">Quantité commandé</label>
+    {{ form_row(form.qtecommande) }}
+  </div>
+  <div class="mb-4">
+    <label class="form-label" for="checkout-cc-name">Prix unitaire</label>
+    {{ form_row(form.prix) }}
+  </div>
+  <div class="mb-4">
+    <label class="form-label" for="checkout-cc-number"
+      >Consommable à utiliser</label
+    >
+    {{ form_row(form.consommable) }}
+  </div>
+  <div class="mb-4">
+    <label class="form-label" for="checkout-cc-number"
+      >Dimension du support</label
+    >
+    {{ form_row(form.dimension) }}
+  </div>
+
+  <div class="mb-4">
+    <label class="form-label" for="checkout-cc-number"
+      >Quantité de la commande</label
+    >
+    {{ form_row(form.qteconsommable) }}
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="mb-4">
+        {{ form_row(form.autre) }}
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="text-end">
+        {{ form_row(form.enregister) }}
+      </div>
+    </div>
+  </div>
+
+  {{ form_end(form) }}
+</div>

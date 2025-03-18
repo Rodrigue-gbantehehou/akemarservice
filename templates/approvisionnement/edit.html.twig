@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Approvisionnement
+{% endblock %}
+
+{% block body %}
+	<div class="content">
+		<div class="block block-rounded">
+			<div class="block-content block-content-full overflow-x-auto">
+				{{ include('approvisionnement/_form.html.twig', {'button_label': 'Update'}) }}
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

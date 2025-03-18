@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Detailcommande
+{% endblock %}
+
+{% block body %}
+	<div class="content">
+		<div class="row">
+			<div
+				class="col-xl-4 ">
+				<!-- Categories -->
+				<div class="block block-rounded js-ecom-div-nav d-none d-xl-block">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">
+							<i class="fa fa-fw fa-boxes text-muted me-1"></i>
+							Client
+						</h3>
+					</div>
+					<div class="block-content">
+						<ul class="nav nav-pills flex-column push">
+
+							<li class="nav-item mb-1">
+								<a class="nav-link d-flex justify-content-between align-items-center" href="javascript:void(0)">
+									Nom et Prenom:
+									{{client.nomclient}}
+								</a>
+							</li>
+							<li class="nav-item mb-1">
+								<a class="nav-link d-flex justify-content-between align-items-center" href="javascript:void(0)">
+									Telephone:
+									{{client.telephoneclient}}
+								</a>
+							</li>
+							<li class="nav-item mb-1">
+								<a class="nav-link d-flex justify-content-between align-items-center" href="javascript:void(0)">
+									Adresse:
+									{{client.adresse}}
+								</a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!-- END Categories -->
+
+
+			</div>
+			<div class="col-xl-8 ">
+				{% if app.session.get('details_commande') is not empty %}
+
+					<!-- Shopping Cart -->
+					<div class="block block-rounded js-ecom-div-cart d-none d-xl-block">
+						<div class="block-header block-header-default">
+							<h3 class="block-title">
+								<i class="fa fa-fw fa-shopping-cart text-muted me-1"></i>
+								Details commandes Enregistés
+							</h3>
+						</div>
+						<div class="block-content">
+							<table class="table table-borderless table-hover table-vcenter">
+								<tbody>
+									{% for detail in app.session.get('details_commande') %}
+										<tr>
+
+											<td class="text-center">
+												<form action="{{path('detail_commande_delete',{'index':loop.index0,'id':client.id})}}" method="POST">
+													<button type="submit">
+														<i class="fa fa-times"></i>
+													</button>
+												</form>
+											</td>
+
+											<td>
+												<a class="h6" href="be_pages_ecom_store_product.html">{{detail.form.detailcommande.description}}</a>
+												<div class="fs-sm text-muted">{{detail.form.detailcommande.type}}
+													/
+													{{detail.form.detailcommande.qteconsommable}}</div>
+											</td>
+											<td class="text-end">
+												<div class="fw-semibold">{{detail.form.detailcommande.prix}}</div>
+											</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						<div class="block-content block-content-full bg-body-light text-end">
+							<a class="btn btn-primary" href="{{path('app_detailcommande_save',{'id':client.id})}}">Enregistrer
+								<i class="fa fa-arrow-right opacity-50 ms-1"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END Shopping Cart -->
+				{% endif %}
+
+				<!-- Product -->
+				<div class="block block-rounded">
+					<div class="block-header block-header-default">
+						<h3 class="block-title">
+							<i class="fa fa-fw fa-shopping-cart text-muted me-1"></i>
+							Details commandes
+						</h3>
+					</div>
+					<div class="block-content">
+						{{ include('detailcommande/_form.html.twig') }}
+
+					</div>
+				</div>
+				<!-- END Product -->
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
