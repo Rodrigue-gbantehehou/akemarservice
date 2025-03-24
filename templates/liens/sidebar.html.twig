@@ -25,13 +25,14 @@
 						<span class="nav-main-link-name">Tableau de bord</span>
 					</a>
 				</li>
+				{% if is_granted('ROLE_USER') %}
+
 				<li class="nav-main-item">
 					<a class="nav-main-link " href="{{path('app_commande')}}">
 						<i class="nav-main-link-icon si si-shoping"></i>
 						<span class="nav-main-link-name">Passer une commande</span>
 					</a>
 				</li>
-				{% if is_granted('ROLE_USER') %}
 					
 				<li class="nav-main-heading">Commande</li>
 				<li class="nav-main-item">

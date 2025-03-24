@@ -18,8 +18,7 @@ class DashbaordController extends AbstractController
         $commandesTotalEnCours=$em->getRepository(Commande::class)->CountCommandeEnCours();
         $commanderecent=$em->getRepository(Commande::class)->findBy([],['created'=>'DESC']);
         $ClientTotal=$em->getRepository(Client::class)->CountClient();
-
-        
+        $clients =$em->getRepository(Client::class)->findBy([],['created'=>'DESC']);
         
         return $this->render('dashbaord/index.html.twig', [
             'controller_name' => 'DashbaordController',
@@ -27,6 +26,7 @@ class DashbaordController extends AbstractController
             'commandesTotalEnCours'=>$commandesTotalEnCours,
             'commanderecent'=>$commanderecent,
             'ClientTotal'=>$ClientTotal,
+            'clients'=>$clients,
         ]);
     }
 }
