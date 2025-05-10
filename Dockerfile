@@ -25,6 +25,6 @@ RUN rm -rf /var/www/vendor && \
     
 WORKDIR /var/www/
 
-ENTRYPOINT ["bash", "./docker/docker.sh"]
+ENTRYPOINT ["bash", ".docker.sh"]
 
 EXPOSE 80
