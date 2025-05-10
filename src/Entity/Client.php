@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Entity\Commande;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,7 +40,7 @@ class Client
     private ?\DateTimeInterface $created = null;
 
     #[ORM\ManyToOne(inversedBy: 'clients')]
-    private ?user $creerpar = null;
+    private ?User $creerpar = null;
 
     public function __construct()
     {
@@ -144,12 +145,12 @@ class Client
         return $this;
     }
 
-    public function getCreerpar(): ?user
+    public function getCreerpar(): ?User
     {
         return $this->creerpar;
     }
 
-    public function setCreerpar(?user $creerpar): static
+    public function setCreerpar(?User $creerpar): static
     {
         $this->creerpar = $creerpar;
 
