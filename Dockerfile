@@ -1,30 +1,26 @@
-FROM php:8.3-apache
+# Étape 1 : image de base avec PHP 8.3, Composer, et extensions nécessaires
+FROM php:8.3-cli
 
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+# Installation des dépendances système
+RUN apt-get update && apt-get install -y \
+    git unzip zip curl libpq-dev libonig-dev libxml2-dev \
+    libzip-dev libicu-dev libpng-dev libjpeg-dev libfreetype6-dev \
+    && docker-php-ext-install pdo pdo_pgsql intl zip gd
 
-RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions intl && \
-    curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
-    mv composer.phar /usr/local/bin/composer && \
-    apt update && apt install -yqq zip git
+# Installer Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY . /var/www/
+# Définir le répertoire de travail
+WORKDIR /var/www
 
-COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
+# Copier les fichiers du projet dans le conteneur
+COPY . .
 
-ENV APP_ENV=prod
+# Installer les dépendances PHP
+RUN composer install --no-dev --optimize-autoloader
 
-RUN rm -rf /var/www/vendor && \
-    rm -rf /var/www/.git && \
-    rm -rf /var/www/.env.local && \
-    cd /var/www && \
-    composer install && \
-    php bin/console cache:clear && \
-    php bin/console cache:warmup && \
-    chown -R www-data:www-data /var/www
-    
-WORKDIR /var/www/
+# Exposer le port utilisé (optionnel si Apache ou autre)
+EXPOSE 8000
 
-ENTRYPOINT ["bash", ".docker.sh"]
-
-EXPOSE 80
+# Lancer le serveur Symfony
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
