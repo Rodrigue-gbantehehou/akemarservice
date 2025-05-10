@@ -10,7 +10,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
 
 COPY . /var/www/
 
-COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
+COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
 
 ENV APP_ENV=prod
 
